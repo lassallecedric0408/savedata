@@ -1,0 +1,2 @@
+je suis un fichier texte.
+J'ai plusieurs lignes dans mon contenu.

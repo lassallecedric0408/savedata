@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvuenue</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <div id="app">
+    {{ message }}
+    <input type="text" v-model="message">
+
+    <div style="width: 50px; height: 50px; border: 1px solid black"
+      :style="{background: count >= 5000 ? '#F00' : 'FFF'}"></div>
+
+    <h1>Notre compteur vaut : {{count}}</h1>
+    <div v-if="count < 5000">
+      <button v-for="step in steps" @click="incrementCount(step)">
+        +{{step}}
+      </button>
+
+      <input type="number" v-model="customStep">
+      <button @click="incrementCount(customStep)">+{{customStep}}</button>
+    </div>
+
+    <div v-if="count >= 5000">
+      Attention, c'est un peu chaud là.
+    </div>
+    <div v-else>On est à la bonne chaleur.</div>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          message: 'Hello les méduses',
+          count: 0,
+          steps: [1, 5, 20, 30, 40, 50, 100],
+          customStep: 1
+        }
+      },
+      methods: {
+        incrementCount(num) {
+          this.count = this.count + num;
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
